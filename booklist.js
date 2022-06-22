@@ -2,21 +2,30 @@
 // We are creating a class that will manage a list of books. Each time we add a book, we want our new book to be added to a list with a unique, incremented id.
 // Let's try to code this down below!
 class BookManager {
-  // this is a constructor with a paramater currentId set to 0 by default
+  
   constructor(currentId = 0) {
-    // 1. initialize an empty array called books
-
-    // 2. initialize a currentId set to currentId
+    // this is a constructor with a paramater currentId set to 0 by default
+    this._books = []; // 1. initialize an empty array called books
+    this.currentId = currentId; // 2. initialize a currentId set to currentId
   }
 
   // 3. a getter function should return the value of our books array
   get books() {
-
+    return this._books;
   }
 
   // function addBook should create an object and push it to our books array
+  addBook(name, genre, author = ""){
+    const newBook = {
+        id: this.currentId +1,  
+        name : name,
+        genre : genre,
+        author : author
+  }
+  this.books.push(newBook);
+}
   // it should take in a name, genre and author and by default have an empty string
-  addBook() {
+
     // 4. Create an object assigned to a variable for the new book using parameters given to addBook
 
     // a) your object should consist of properties id, name,genre and author with values added when we call this method
@@ -27,16 +36,16 @@ class BookManager {
     // 5. Push the newly created object to our books array
     // hint: note that best practice would be to access our books array using the get method
 
-  }
-
 }
 
 // 6. outside the class, create an instance of BookManager
-
+const bookDetail = new BookManager();
 // 7. add two books with the following properties to our instance
 // "The Alchemist", "Life", "Paulo Coelho"
 // "Time to Play", "Children's Book", "Bluey"
 
+bookDetail.addBook("The Alchemist", "Life", "Paulo Coelho");
+bookDetail.addBook("Time to Play", "Children's Book", "Bluey");
 // 8. console log our books array to check that the new books were added
-
+console.log(bookDetail.books);
 
